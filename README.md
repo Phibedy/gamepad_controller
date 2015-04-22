@@ -1,10 +1,5 @@
-# camera
- * Basically some modules for different cameras used by [LMS](https://github.com/Phibedy/LMS)
- * Only works on linux atm
-  * You have to install v4l-utils
-###TODO
- * get it running
- * Docs
- 
-###Supported Cams
- * [playstation-eye](http://us.playstation.com/ps3/accessories/playstation-eye-camera-ps3.html) (work in progress)
+# gamepad_controller
+Module for handling gamepads written for [LMS](https://github.com/Phibedy/LMS). It could be easily used without the framework.
+
+###Dependencies
+ * [gamepad_lib](https://github.com/Phibedy/gamepad_lib)
