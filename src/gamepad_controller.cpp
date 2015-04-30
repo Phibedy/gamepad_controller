@@ -8,7 +8,13 @@ Gamepad *gp;
 bool GamepadController::initialize(){
     GamepadHandler::init(this,datamanager());
     //TODO just for testing
-    gp = GamepadHandler::getGamepad(this,"360",false);
+    gp = GamepadHandler::getGamepad(this,"Xbox",false);
+
+    if(gp == nullptr) {
+        logger.error("init") << "gamepad is null";
+        return false;
+    }
+
     setAsXBoxController(*gp);
 
     return true;
