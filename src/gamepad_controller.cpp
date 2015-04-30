@@ -32,6 +32,5 @@ bool GamepadController::deinitialize(){
 
 bool GamepadController::cycle(){
     GamepadHandler::processEvents();
-    gp->printButtons();
     return true;
 }
