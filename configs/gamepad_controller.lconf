@@ -1,2 +1,3 @@
 dataChannelName=CONTROLLER_1
 controller=Xbox,XBox,360
+type=xpad

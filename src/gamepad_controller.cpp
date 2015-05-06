@@ -10,8 +10,10 @@ bool GamepadController::initialize(){
     GamepadHandler::init(this,datamanager());
     //TODO just for testing
 
-    std::vector<std::string> names = getConfig()->getArray<std::string>("controller");
-    std::string dataChannelName = getConfig()->get<std::string>("dataChannelName", "CONTROLLER_1");
+    const lms::type::ModuleConfig *config = getConfig();
+
+    std::vector<std::string> names = config->getArray<std::string>("controller");
+    std::string dataChannelName = config->get<std::string>("dataChannelName", "CONTROLLER_1");
     for(std::string &name:names){
         gp = GamepadHandler::getGamepad(this,name,dataChannelName,false);
         if(gp != nullptr)
@@ -21,7 +23,17 @@ bool GamepadController::initialize(){
         logger.error("init") << "gamepad is not found!";
         return false;
     }
-    setAsXBoxController(*gp);
+
+    std::string controllerType = config->get<std::string>("type");
+
+    if(controllerType == "xpad") {
+        setAsXBoxControllerXpad(*gp);
+    } else if(controllerType == "xboxdrv") {
+        setAsXBoxControllerXboxdrv(*gp);
+    } else {
+        logger.error("init")<< "Type invalid: " << controllerType;
+        return false;
+    }
 
     return true;
 }
