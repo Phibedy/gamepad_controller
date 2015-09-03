@@ -10,4 +10,4 @@ set (HEADERS
 include_directories("include")
 
 add_library ( gamepad_controller MODULE ${SOURCES} ${HEADERS})
-target_link_libraries(gamepad_controller PRIVATE lms gamepad_lib)
+target_link_libraries(gamepad_controller PRIVATE lmscore gamepad_lib)
