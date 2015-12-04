@@ -10,10 +10,8 @@ bool GamepadController::initialize(){
     GamepadHandler::init(this,datamanager());
     //TODO just for testing
 
-    const lms::type::ModuleConfig *config = getConfig();
-
-    std::vector<std::string> names = config->getArray<std::string>("controller");
-    std::string dataChannelName = config->get<std::string>("dataChannelName", "CONTROLLER_1");
+    std::vector<std::string> names = config().getArray<std::string>("controller");
+    std::string dataChannelName = config().get<std::string>("dataChannelName", "CONTROLLER_1");
     for(std::string &name:names){
         gp = GamepadHandler::getGamepad(this,name,dataChannelName,false);
         if(gp != nullptr)
@@ -24,7 +22,7 @@ bool GamepadController::initialize(){
         return false;
     }
 
-    std::string controllerType = config->get<std::string>("type");
+    std::string controllerType = config().get<std::string>("type");
 
     if(controllerType == "xpad") {
         setAsXBoxControllerXpad(*gp);
